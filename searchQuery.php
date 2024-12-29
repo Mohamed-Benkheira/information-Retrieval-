@@ -12,7 +12,7 @@ function getStopwords($stoplistFile)
 
 function removeStopwords($text, $stopwords)
 {
-    $text = preg_replace('/[^\w\s\']+/', '', $text); // Keep words, whitespace, and apostrophes
+    $text = preg_replace('/[^\w\s]+/', '', $text); // Keep words, whitespace, and apostrophes
     $words = preg_split('/\s+/', $text); // Split by whitespace
     $filteredWords = array_filter($words, function ($word) use ($stopwords) {
         return !in_array(strtolower($word), $stopwords);
@@ -179,7 +179,7 @@ function extractContext($documentPath, $positions, $terms, $contextSize = 5)
         $end = min(count($words), $position - 1 + $contextSize + 1);
 
         $context = array_slice($words, $start, $end - $start);
-        $highlightedTerm = "<span class='highlight'>" . htmlspecialchars($term) . "</span>";
+        $highlightedTerm = "<span class='text-decoration-underline fw-bold text-danger text-uppercase'>" . htmlspecialchars($term) . "</span>";
         $context[$position - 1 - $start] = $highlightedTerm;
         $contexts[] = implode(' ', $context);
     }

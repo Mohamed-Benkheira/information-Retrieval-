@@ -129,6 +129,7 @@
                                 foreach ($data['terms'] as $termData) {
                                     $context = extractContext($document, [$termData['position']], [$termData['term']]);
                                     echo "<p><strong>Term:</strong> " . htmlspecialchars($termData['term']) . "</p>";
+                                    echo "<p><strong>position:</strong> " . htmlspecialchars($termData['position']) . "</p>";
                                     echo "<p><strong>Context:</strong> $context</p>";
                                 }
                             }
